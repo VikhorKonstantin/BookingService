@@ -1,7 +1,6 @@
 package by.vikhor.bookingservice.api;
 
 import by.vikhor.bookingservice.config.BookingServiceAppConfig;
-import by.vikhor.bookingservice.entity.Booking;
 import by.vikhor.bookingservice.entity.Room;
 import by.vikhor.bookingservice.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;

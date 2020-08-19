@@ -3,7 +3,9 @@ package by.vikhor.bookingservice.entity;
 import by.vikhor.bookingservice.config.BookingServiceAppConfig;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -21,6 +23,8 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "bookings")
 public class Booking {
@@ -31,7 +35,6 @@ public class Booking {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JoinColumn(name = "room_id", insertable = false, updatable = false)
     @ManyToOne
-
     private Room room;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
