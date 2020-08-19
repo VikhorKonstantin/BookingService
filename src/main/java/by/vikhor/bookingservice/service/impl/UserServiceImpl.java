@@ -4,6 +4,7 @@ import by.vikhor.bookingservice.entity.User;
 import by.vikhor.bookingservice.repository.UserRepository;
 import by.vikhor.bookingservice.security.CustomUserDetails;
 import by.vikhor.bookingservice.service.UserService;
+import by.vikhor.bookingservice.service.exception.GenericBadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,13 +32,13 @@ public class UserServiceImpl implements UserService {
         return new CustomUserDetails(user);
     }
 
-    @Transactional()
+    @Transactional
     @Override
-    public User register(User user) {
+    public User register(User user) throws GenericBadRequestException {
         String name = user.getName();
         Optional<User> byName = userRepository.findByName(name);
         if (byName.isPresent()) {
-            throw new IllegalArgumentException(String.format("User with name '%s' is already exists", name));
+            throw new GenericBadRequestException(String.format("User with name '%s' is already exists", name));
         }
         String encoded = passwordEncoder.encode(user.getPassword());
         user.setPassword(encoded);

@@ -1,7 +1,6 @@
 package by.vikhor.bookingservice.api;
 
 import by.vikhor.bookingservice.entity.Booking;
-import by.vikhor.bookingservice.entity.Room;
 import by.vikhor.bookingservice.service.BookingService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,10 @@ public class BookingController {
     }
 
     @SneakyThrows
+    //todo:: fix
     @PostMapping
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Booking> bookRoom(@RequestBody Booking booking, UriComponentsBuilder uriComponentsBuilder) {
         Booking newBooking = bookingService.bookRoom(booking);
         URI locationUri =

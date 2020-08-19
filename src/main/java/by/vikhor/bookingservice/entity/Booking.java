@@ -6,7 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -24,6 +31,7 @@ public class Booking {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JoinColumn(name = "room_id", insertable = false, updatable = false)
     @ManyToOne
+
     private Room room;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

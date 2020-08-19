@@ -6,6 +6,9 @@ import by.vikhor.bookingservice.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +28,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    @Transactional
     public Room addRoom(Room newRoom) {
         return roomRepository.save(newRoom);
     }
@@ -32,5 +36,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> findAllRooms() {
         return roomRepository.findAll();
+    }
+
+    @Override
+    public List<Room> findFreeInRange(LocalDateTime from, LocalDateTime to) {
+        return new ArrayList<>(roomRepository.findFreeInRange(from, to));
     }
 }

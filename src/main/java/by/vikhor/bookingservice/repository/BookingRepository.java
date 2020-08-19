@@ -13,5 +13,5 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     @Query(QueryConstants.CONFLICT_NOT_EXISTS_QUERY)
     boolean isConflictNotExists(@Param("roomId") Long roomId, @Param("userId") Long userId,
-                             @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
+                                @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 }

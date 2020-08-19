@@ -6,6 +6,7 @@ import by.vikhor.bookingservice.security.GrantType;
 import by.vikhor.bookingservice.security.jwt.JwtToken;
 import by.vikhor.bookingservice.security.jwt.JwtTokenProvider;
 import by.vikhor.bookingservice.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -53,6 +54,7 @@ public class AuthController {
         throw new BadCredentialsException("Invalid grant_type");
     }
 
+    @SneakyThrows
     @PostMapping("/signup")
     public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
         User registered = userService.register(user);

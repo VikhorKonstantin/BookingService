@@ -37,7 +37,7 @@ public class JwtToken {
         if (o == null || getClass() != o.getClass()) return false;
         JwtToken jwtToken = (JwtToken) o;
         return Objects.equals(accessToken, jwtToken.accessToken) &&
-                Objects.equals(refreshToken, jwtToken.refreshToken);
+               Objects.equals(refreshToken, jwtToken.refreshToken);
     }
 
     @Override

@@ -8,10 +8,6 @@ group = 'by.vikhor'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
 
-tasks.withType(JavaCompile).each {
-	it.options.compilerArgs.add('--enable-preview')
-}
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor

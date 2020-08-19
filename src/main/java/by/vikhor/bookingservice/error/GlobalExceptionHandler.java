@@ -1,6 +1,7 @@
 package by.vikhor.bookingservice.error;
 
-import by.vikhor.bookingservice.service.exception.BookingConflictException;
+import by.vikhor.bookingservice.service.exception.GenericBadRequestException;
+import by.vikhor.bookingservice.service.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,20 +26,20 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(
-            HttpServletRequest request, IllegalArgumentException e) {
+    @ExceptionHandler(GenericBadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBookingConflictException(
+            HttpServletRequest request, GenericBadRequestException e) {
         ErrorResponse errorResponse = createGenericResponse(request, e.getMessage());
         return new ResponseEntity<>(errorResponse,
                 HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(BookingConflictException.class)
-    public ResponseEntity<ErrorResponse> handleBookingConflictException(
-            HttpServletRequest request, BookingConflictException e) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
+            HttpServletRequest request, ResourceNotFoundException e) {
         ErrorResponse errorResponse = createGenericResponse(request, e.getMessage());
         return new ResponseEntity<>(errorResponse,
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.NOT_FOUND);
     }
 
     private ErrorResponse createGenericResponse(HttpServletRequest request, String message) {

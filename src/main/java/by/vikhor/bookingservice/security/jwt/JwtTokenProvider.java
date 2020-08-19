@@ -36,7 +36,7 @@ public class JwtTokenProvider {
     private final SecretKey jwtSecret;
     private final Long jwtAccessTokenExpirationInMs;
     private final Long jwtRefreshTokenExpirationInMs;
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public JwtTokenProvider(@Value("${jwt.jwtSecret}") String jwtSecretString,
