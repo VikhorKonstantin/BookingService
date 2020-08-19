@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    @Query(QueryConstants.ROOM_CONFLICT_QUERY)
-    boolean isConflictExists(@Param("roomId") Long roomId,
+    @Query(QueryConstants.CONFLICT_NOT_EXISTS_QUERY)
+    boolean isConflictNotExists(@Param("roomId") Long roomId, @Param("userId") Long userId,
                              @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 }

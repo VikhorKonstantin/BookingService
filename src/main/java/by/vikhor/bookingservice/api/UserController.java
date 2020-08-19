@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
@@ -22,7 +25,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.addUser(user));
+    public ResponseEntity<User> addUser(@RequestBody User user, UriComponentsBuilder uriComponentsBuilder) {
+        User newUser = userService.addUser(user);
+        URI locationUri =
+                uriComponentsBuilder.path("/users/")
+                        .path(String.valueOf(newUser.getUserId()))
+                        .build()
+                        .toUri();
+        return ResponseEntity.created(locationUri).body(newUser);
     }
 }

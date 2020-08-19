@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,8 +26,14 @@ public class RoomController {
     }
 
     @PostMapping
-    public ResponseEntity<Room> addRoom(@RequestBody Room room) {
-        return ResponseEntity.ok(roomService.addRoom(room));
+    public ResponseEntity<Room> addRoom(@RequestBody Room room, UriComponentsBuilder uriComponentsBuilder) {
+        Room newRoom = roomService.addRoom(room);
+        URI locationUri =
+                uriComponentsBuilder.path("/rooms/")
+                        .path(String.valueOf(newRoom.getRoomId()))
+                        .build()
+                        .toUri();
+        return ResponseEntity.created(locationUri).body(newRoom);
     }
 
     @GetMapping
