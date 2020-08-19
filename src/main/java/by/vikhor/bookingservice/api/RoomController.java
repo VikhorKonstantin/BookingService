@@ -4,6 +4,7 @@ import by.vikhor.bookingservice.entity.Room;
 import by.vikhor.bookingservice.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ public class RoomController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Room> addRoom(@RequestBody Room room, UriComponentsBuilder uriComponentsBuilder) {
         Room newRoom = roomService.addRoom(room);
         URI locationUri =
@@ -37,6 +39,7 @@ public class RoomController {
     }
 
     @GetMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Room>> findAll() {
         return ResponseEntity.ok(roomService.findAllRooms());
     }

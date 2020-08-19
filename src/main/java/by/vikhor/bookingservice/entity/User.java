@@ -1,5 +1,6 @@
 package by.vikhor.bookingservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,6 +20,10 @@ public class User {
 
     @NotBlank
     private String role;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "pass_word")
+    private String password;
 
     @Override
     public boolean equals(Object o) {

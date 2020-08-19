@@ -6,6 +6,7 @@ import by.vikhor.bookingservice.service.BookingService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class BookingController {
 
     @SneakyThrows
     @PostMapping
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Booking> bookRoom(@RequestBody Booking booking, UriComponentsBuilder uriComponentsBuilder) {
         Booking newBooking = bookingService.bookRoom(booking);
         URI locationUri =
