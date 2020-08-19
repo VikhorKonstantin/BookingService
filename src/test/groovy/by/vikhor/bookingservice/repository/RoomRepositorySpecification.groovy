@@ -22,12 +22,6 @@ class RoomRepositorySpecification extends Specification {
         TestDataProvider.insertTestData(roomRepository, userRepository, bookingRepository)
     }
 
-    def cleanup() {
-        bookingRepository.deleteAll()
-        roomRepository.deleteAll()
-        userRepository.deleteAll()
-    }
-
     def "should return Room 3"() {
         given: "Room 3 free in the given range. Room 1 and Room 2 not"
             def from = LocalDateTime.parse("2020-12-12T20:11:12")
