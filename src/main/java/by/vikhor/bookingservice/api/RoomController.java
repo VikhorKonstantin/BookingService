@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/rooms")
+@Validated
 public class RoomController {
 
     private final RoomService roomService;
@@ -34,7 +37,7 @@ public class RoomController {
     @PostMapping
     //@PreAuthorize("hasRole('USER')")
     @PreAuthorize("permitAll()")
-    public ResponseEntity<Room> addRoom(@RequestBody Room room, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<Room> addRoom(@RequestBody @Valid Room room, UriComponentsBuilder uriComponentsBuilder) {
         Room newRoom = roomService.addRoom(room);
         URI locationUri =
                 uriComponentsBuilder.path("/rooms/")
