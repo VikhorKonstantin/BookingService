@@ -5,6 +5,7 @@ import { Redirect, Route } from "react-router-dom"
 import LoginPage from "./pages/LoginPage"
 import SignupPage from "./pages/SignupPage"
 import CheckAuthRoute from "./routes/ChechAuthRoute"
+import RoomsPage from "./pages/RoomsPage"
 
 function App({ location }) {
     return (
@@ -25,6 +26,13 @@ function App({ location }) {
                 path="/signup"
                 exact
                 component={(props) => <SignupPage {...props} />}
+            />
+            <CheckAuthRoute
+                shouldBeAuthenticated={false}
+                location={location}
+                path="/rooms"
+                exact
+                component={(props) => <RoomsPage {...props} />}
             />
         </div>
     )

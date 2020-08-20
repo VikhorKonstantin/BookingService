@@ -21,7 +21,6 @@ class SignupPage extends Component {
             .signup(data)
             .then(() => this.props.history.push("/login"))
             .catch((err) => {
-                console.log({ err })
                 this.setState({ errors: err.response.data, isLoading: false })
             })
     }

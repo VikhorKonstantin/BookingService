@@ -22,4 +22,13 @@ export default {
                 })
                 .then((res) => res.data),
     },
+    rooms: {
+        getAll: () => api.get("/rooms").then((res) => res.data),
+        saveRoom: (data) =>
+            api
+                .post("/rooms", {
+                    type: data.type,
+                })
+                .then((res) => res.data),
+    },
 }
