@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "e3b9d721-e760-4f0f-a02c-106a98a0e762",
+		"name": "BookingService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "postRoom",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1dWlkdGVzdCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE1OTc4NTkwMzgsImV4cCI6MTU5Nzg5NTAzOH0.fxkhYNj8z4WA5MLwsDUjdwsJNA9Tn_qP8KRB2YS8in-udf4rfbysrrJTPCCQez3ak5P2mzLCjM2yIKNfpl-ftQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\" : \"ccc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book The Room",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1dWlkdGVzdCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE1OTc4NjA3MzUsImV4cCI6MTU5Nzg5NjczNX0.JsxbGPQpLidcITmDb9Vow122qEASaS5Ic5HBfseRRPFqU9saeF1zx950vU3dh4_3337-99C4qKNojkvyCHt4Pg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"roomId\": 1,\n    \"userId\": 1,\n    \"start\": \"2021-08-19 21:36:15\",\n    \"end\": \"2021-08-19 21:40:15\",\n    \"eventDescription\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"uuidtest\",\n\t\"name\": \"uuidtest\",\n    \"role\" : \"Role 1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"uuidtest\",\n    \"password\": \"uuidtest\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/token?grant_type=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all rooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get free rooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rooms/free?from=2020-08-19 21:36:15&to=2020-08-19 21:37:14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rooms",
+						"free"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2020-08-19 21:36:15"
+						},
+						{
+							"key": "to",
+							"value": "2020-08-19 21:37:14"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

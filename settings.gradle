@@ -1,1 +1,3 @@
 rootProject.name = 'bookingservice'
+
+include 'backend', 'frontend'
