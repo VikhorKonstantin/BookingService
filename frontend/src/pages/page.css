@@ -1,0 +1,12 @@
+.main_content {
+    margin-top:10rem;
+    margin-bottom: 10rem;
+}
+
+.fixed_nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
