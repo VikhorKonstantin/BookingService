@@ -36,10 +36,9 @@ public class BookingController {
     }
 
     @SneakyThrows
-    //todo:: fix
+
     @PostMapping
-    //@PreAuthorize("hasRole('USER')")
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Booking> bookRoom(@RequestBody @Valid Booking booking,
                                             UriComponentsBuilder uriComponentsBuilder) {
         Booking newBooking = bookingService.bookRoom(booking);

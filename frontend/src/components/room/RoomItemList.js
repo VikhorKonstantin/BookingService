@@ -2,10 +2,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import RoomItem from "./RoomItem"
 
-export default function RoomItemList({ rooms, onItemClick, chosenRoom }) {
+export default function RoomItemList({
+    rooms,
+    onItemClick = () => {},
+    chosenRoom,
+}) {
     const items = rooms.map((room) => (
         <RoomItem
-            isChosen={chosenRoom.id === room.id}
+            isChosen={chosenRoom && chosenRoom.id === room.id}
             onItemClick={onItemClick}
             key={room.id}
             {...room}

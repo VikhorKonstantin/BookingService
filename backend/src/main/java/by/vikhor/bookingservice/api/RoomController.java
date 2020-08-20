@@ -35,10 +35,8 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    //todo:: fix
     @PostMapping
-    //@PreAuthorize("hasRole('USER')")
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Room> addRoom(@RequestBody @Valid Room room, UriComponentsBuilder uriComponentsBuilder) {
         Room newRoom = roomService.addRoom(room);
         URI locationUri =
