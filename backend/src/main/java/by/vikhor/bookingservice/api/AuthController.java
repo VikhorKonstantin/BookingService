@@ -25,8 +25,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.net.URI;
 
+import static by.vikhor.bookingservice.api.ApiConstants.API_BASE_URL;
+
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(API_BASE_URL + "/auth")
 @Validated
 public class AuthController {
     private final AuthenticationManager authenticationManager;

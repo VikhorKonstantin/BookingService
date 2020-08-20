@@ -2,14 +2,16 @@ package by.vikhor.bookingservice.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.TestPropertySource
+import spock.lang.Shared
 import spock.lang.Specification
 
 import java.time.LocalDateTime
 
 @DataJpaTest
 @TestPropertySource(locations = "classpath:/test.properties")
-class RoomRepositorySpecification extends Specification {
+class RoomRepositoryTest extends Specification {
 
     @Autowired
     private RoomRepository roomRepository
@@ -18,10 +20,17 @@ class RoomRepositorySpecification extends Specification {
     @Autowired
     private UserRepository userRepository
 
+    @Shared
+    boolean setupHasRun = false
+
     def setup() {
-        TestDataProvider.insertTestData(roomRepository, userRepository, bookingRepository)
+        if (!setupHasRun) {
+            TestDataProvider.insertTestData(roomRepository, userRepository, bookingRepository)
+            setupHasRun = true
+        }
     }
 
+    @Rollback(false)
     def "should return Room 3"() {
         given: "Room 3 free in the given range. Room 1 and Room 2 not"
             def from = LocalDateTime.parse("2020-12-12T20:11:12")

@@ -21,8 +21,10 @@ import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static by.vikhor.bookingservice.api.ApiConstants.API_BASE_URL;
+
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping(API_BASE_URL + "/rooms")
 @Validated
 public class RoomController {
 

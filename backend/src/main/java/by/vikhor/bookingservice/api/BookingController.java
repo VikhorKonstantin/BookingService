@@ -21,8 +21,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
 
+import static by.vikhor.bookingservice.api.ApiConstants.API_BASE_URL;
+
 @RestController
-@RequestMapping("/bookings")
+@RequestMapping(API_BASE_URL + "/bookings")
 @Validated
 public class BookingController {
 
