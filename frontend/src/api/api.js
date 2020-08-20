@@ -24,10 +24,24 @@ export default {
     },
     rooms: {
         getAll: () => api.get("/rooms").then((res) => res.data),
+        getFreeInRange: (from, to) =>
+            api.get(`/rooms?from=${from}&to=${to}`).then((res) => res.data),
         saveRoom: (data) =>
             api
                 .post("/rooms", {
                     type: data.type,
+                })
+                .then((res) => res.data),
+    },
+    bookings: {
+        bookRoom: (data, user) =>
+            api
+                .post("/rooms", {
+                    roomId: data.roomId,
+                    userId: user.id,
+                    start: data.from,
+                    end: data.to,
+                    eventDescription: data.description,
                 })
                 .then((res) => res.data),
     },

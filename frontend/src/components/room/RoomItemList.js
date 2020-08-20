@@ -2,8 +2,15 @@ import React from "react"
 import PropTypes from "prop-types"
 import RoomItem from "./RoomItem"
 
-export default function RoomItemList({ rooms }) {
-    const items = rooms.map((room) => <RoomItem key={room.id} {...room} />)
+export default function RoomItemList({ rooms, onItemClick, chosenRoom }) {
+    const items = rooms.map((room) => (
+        <RoomItem
+            isChosen={chosenRoom.id === room.id}
+            onItemClick={onItemClick}
+            key={room.id}
+            {...room}
+        />
+    ))
     return <ul className="room-list">{items}</ul>
 }
 

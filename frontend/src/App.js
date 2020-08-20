@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage"
 import SignupPage from "./pages/SignupPage"
 import CheckAuthRoute from "./routes/ChechAuthRoute"
 import RoomsPage from "./pages/RoomsPage"
+import BookingPage from "./pages/BookingPage"
 
 function App({ location }) {
     return (
@@ -33,6 +34,13 @@ function App({ location }) {
                 path="/rooms"
                 exact
                 component={(props) => <RoomsPage {...props} />}
+            />
+            <CheckAuthRoute
+                shouldBeAuthenticated={false}
+                location={location}
+                path="/bookings"
+                exact
+                component={(props) => <BookingPage {...props} />}
             />
         </div>
     )
